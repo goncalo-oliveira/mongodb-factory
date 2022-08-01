@@ -5,7 +5,7 @@
     <RootNamespace>MongoDB</RootNamespace>
     <AssemblyName>mongodb.factory</AssemblyName>
     <PackageId>MongoDB.Factory</PackageId>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <Authors>Goncalo Oliveira</Authors>
     <Description>Dependency injection extensions for the MongoDB driver</Description>
     <RepositoryUrl>https://github.com/goncalo-oliveira/mongodb-factory</RepositoryUrl>
@@ -17,8 +17,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
-    <PackageReference Include="mongocsharpdriver" Version="2.15.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
+    <PackageReference Include="mongocsharpdriver" Version="2.17.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
   </ItemGroup>
 
   <ItemGroup>
