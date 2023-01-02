@@ -5,7 +5,7 @@
     <RootNamespace>MongoDB</RootNamespace>
     <AssemblyName>mongodb.factory</AssemblyName>
     <PackageId>MongoDB.Factory</PackageId>
-    <Version>0.1.2</Version>
+    <Version>0.1.3</Version>
     <Authors>Goncalo Oliveira</Authors>
     <Description>Dependency injection extensions for the MongoDB driver</Description>
     <RepositoryUrl>https://github.com/goncalo-oliveira/mongodb-factory</RepositoryUrl>
