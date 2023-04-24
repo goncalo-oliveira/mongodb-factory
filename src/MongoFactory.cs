@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using Microsoft.Extensions.Options;
 
 namespace MongoDB.Driver
@@ -8,12 +8,12 @@ namespace MongoDB.Driver
     {
         internal const string DefaultNamedSettings = "_default";
         private readonly IOptionsMonitor<MongoClientSettings> settingsAccessor;
-        private readonly IDictionary<string, IMongoClient> instances;
+        private readonly ConcurrentDictionary<string, IMongoClient> instances;
 
         public MongoFactory( IOptionsMonitor<MongoClientSettings> optionsAccessor )
         {
             settingsAccessor = optionsAccessor;
-            instances = new Dictionary<string, IMongoClient>( StringComparer.OrdinalIgnoreCase );
+            instances = new ConcurrentDictionary<string, IMongoClient>( StringComparer.OrdinalIgnoreCase );
         }
 
         public IMongoClient CreateClient()
@@ -33,16 +33,10 @@ namespace MongoDB.Driver
                 http://mongodb.github.io/mongo-csharp-driver/2.13/reference/driver/connecting/#re-use
             */
             
-            if ( instances.TryGetValue( name, out var client ) )
-            {
-                return ( client );
-            }
-
-            var settings = settingsAccessor.Get( name );
-
-            instances.Add( name, client = new MongoClient( settings ) );
-
-            return ( client );
+            return instances.GetOrAdd(
+                name,
+                _ => new MongoClient( settingsAccessor.Get( name ) )
+            );
         }
     }
 }
